@@ -14,17 +14,43 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(--tx);}
-/* SETUP */
-#setup{position:fixed;inset:0;z-index:3000;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;}
-#setup.on{display:flex;}
-.s-box{width:100%;max-width:360px;background:var(--s1);border:1px solid var(--b2);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;}
-.s-inp{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:11px 12px;color:var(--tx);font-size:.84em;outline:none;font-family:monospace;}
+
+/* ── SETUP ── */
+#setup{
+  position:fixed;inset:0;z-index:3000;background:var(--bg);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  display:none;
+}
+#setup.on{display:block;}
+.setup-inner{
+  min-height:100%;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;
+  padding:50px 20px 50px;
+}
+.s-card{
+  width:100%;max-width:360px;
+  background:var(--s1);border:1px solid var(--b2);border-radius:16px;
+  padding:22px;display:flex;flex-direction:column;gap:16px;
+}
+.s-lbl{font-size:.68em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;}
+.s-inp{
+  width:100%;background:var(--s2);border:1px solid var(--b1);
+  border-radius:10px;padding:13px 12px;color:var(--tx);
+  font-size:.84em;outline:none;font-family:monospace;
+  -webkit-appearance:none;appearance:none;
+}
 .s-inp:focus{border-color:var(--gold);}
-.s-lbl{font-size:.68em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px;}
-.s-hint{font-size:.65em;color:var(--tx3);margin-top:4px;}
-.s-btn{background:linear-gradient(135deg,var(--wine),var(--wine2));border:none;border-radius:11px;padding:13px;color:var(--cream);font-size:.92em;font-weight:600;font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;}
+.s-hint{font-size:.65em;color:var(--tx3);margin-top:5px;line-height:1.4;}
+.s-btn{
+  width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));
+  border:none;border-radius:11px;padding:15px;
+  color:var(--cream);font-size:.93em;font-weight:600;
+  font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;
+}
 .s-btn:active{opacity:.85;}
-/* SPLASH */
+
+/* ── SPLASH ── */
 #splash{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .7s;}
 #splash.off{opacity:0;pointer-events:none;}
 .sp-ic{font-size:3.8em;animation:pp 2s ease infinite;}
@@ -33,7 +59,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sp-bar{width:130px;height:2px;background:var(--s3);border-radius:2px;overflow:hidden;}
 .sp-f{height:100%;background:linear-gradient(90deg,var(--wine),var(--gold));animation:ld 2s forwards;}
 @keyframes ld{from{width:0}to{width:100%}}
-/* LAYOUT */
+
+/* ── APP LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100%;height:-webkit-fill-available;}
 .hdr{flex-shrink:0;background:rgba(13,5,3,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:13px 16px 11px;display:flex;align-items:center;justify-content:space-between;}
 .hdr-l{font-family:'Cormorant Garamond',serif;font-size:1.3em;font-weight:700;color:var(--gold2);}
@@ -52,13 +79,15 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .ni:active{transform:scale(.9);}
 .ni-ic{font-size:1.25em;}
 .ni-lb{font-size:.59em;}
-/* PAGE */
+
+/* ── PAGES ── */
 .pg{display:none;animation:fu .25s ease;}
 .pg.on{display:block;}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .pt{font-family:'Cormorant Garamond',serif;font-size:1.4em;font-weight:600;color:var(--gold2);margin-bottom:3px;}
 .ps{font-size:.73em;color:var(--tx3);margin-bottom:16px;}
-/* STATS */
+
+/* ── STATS ── */
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
 .sc{background:var(--s1);border:1px solid var(--b2);border-radius:13px;padding:14px;position:relative;overflow:hidden;}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--wine),var(--gold));}
@@ -68,7 +97,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sc-v.big{font-size:2.2em;}
 .sc-u{font-size:.61em;color:var(--tx3);margin-top:2px;}
 .sc-i{position:absolute;right:11px;top:11px;font-size:1.2em;opacity:.2;}
-/* WINE */
+
+/* ── WINE CARDS ── */
 .wc{background:var(--s1);border:1px solid var(--b2);border-radius:13px;padding:13px;margin-bottom:9px;}
 .wc-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .wc-n{font-family:'Cormorant Garamond',serif;font-size:1.1em;font-weight:600;color:var(--cream);}
@@ -88,7 +118,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .cy{background:linear-gradient(90deg,#7a6010,#c9a030);}
 .cr{background:linear-gradient(90deg,#8b2020,#c03030);}
 .prg-l{display:flex;justify-content:space-between;font-size:.6em;color:var(--tx3);margin-top:4px;}
-/* TANKS */
+
+/* ── TANKS ── */
 .tg{margin-bottom:16px;}
 .tg-l{font-size:.66em;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;padding-bottom:7px;border-bottom:1px solid var(--b2);margin-bottom:8px;}
 .ti{background:var(--s1);border:1px solid var(--b2);border-radius:12px;padding:12px 13px;margin-bottom:7px;display:flex;align-items:center;gap:11px;}
@@ -100,7 +131,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .ti-w{font-size:.86em;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ti-v{font-size:.69em;color:var(--tx3);margin-top:1px;}
 .td{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-/* FORM */
+
+/* ── SALE FORM ── */
 .chs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
 .ct{background:var(--s2);border:1px solid var(--b2);border-radius:10px;padding:10px 5px;text-align:center;cursor:pointer;transition:all .2s;}
 .ct.on{background:var(--wine);border-color:var(--wine2);}
@@ -116,7 +148,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sub{width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));border:none;border-radius:11px;padding:14px;color:var(--cream);font-size:.91em;font-weight:600;font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;}
 .sub:active{transform:scale(.97);filter:brightness(.9);}
 .sub:disabled{opacity:.5;}
-/* TOAST */
+
+/* ── TOAST ── */
 .toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:var(--s3);border:1px solid var(--b1);color:var(--tx);border-radius:12px;padding:10px 18px;font-size:.81em;z-index:500;white-space:nowrap;pointer-events:none;animation:tst .25s ease;}
 .toast.ok{border-color:rgba(45,106,63,.5);color:#6fcf8a;}
 .toast.err{border-color:rgba(139,32,32,.5);color:#f07070;}
@@ -130,28 +163,30 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 </head>
 <body>
 
-<!-- SETUP -->
+<!-- ══ SETUP ══ -->
 <div id="setup">
-  <div style="font-size:3.2em;margin-bottom:14px">🍷</div>
-  <div style="font-family:'Cormorant Garamond',serif;font-size:2em;font-weight:700;color:var(--gold2);margin-bottom:4px">მეღვინეობა</div>
-  <div style="font-size:.77em;color:var(--tx3);margin-bottom:26px;text-align:center">პირველი გაშვება — Airtable კავშირი</div>
-  <div class="s-box">
-    <div>
-      <label class="s-lbl">Airtable API Token</label>
-      <input id="cfg-tk" type="password" class="s-inp" placeholder="patXXXXXXXXX.xxxxxxxxxx...">
-      <div class="s-hint">Airtable → Developer Hub → Personal access tokens</div>
+  <div class="setup-inner">
+    <div style="font-size:3em;margin-bottom:12px">🍷</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.9em;font-weight:700;color:var(--gold2);margin-bottom:4px">მეღვინეობა</div>
+    <div style="font-size:.75em;color:var(--tx3);margin-bottom:24px;text-align:center">პირველი გაშვება — Airtable კავშირი</div>
+    <div class="s-card">
+      <div>
+        <label class="s-lbl">Airtable API Token</label>
+        <input id="cfg-tk" type="text" class="s-inp" placeholder="patXXXXXXXX.xxxxxxxxxxxxxxxx...">
+        <div class="s-hint">Airtable.com → Developer Hub → Personal access tokens → შენი token</div>
+      </div>
+      <div>
+        <label class="s-lbl">Base ID</label>
+        <input id="cfg-bi" type="text" class="s-inp" placeholder="appXXXXXXXXXXXXXX">
+        <div class="s-hint">Airtable-ის URL-ში: airtable.com/<span style="color:var(--tx2);font-weight:700">appXXX...</span>/tbl...</div>
+      </div>
+      <button class="s-btn" onclick="doSetup()">✓ შენახვა და გაშვება</button>
     </div>
-    <div>
-      <label class="s-lbl">Base ID</label>
-      <input id="cfg-bi" type="text" class="s-inp" placeholder="appXXXXXXXXXXXXXX">
-      <div class="s-hint">URL-ში: airtable.com/<b style="color:var(--tx2)">appXXX...</b>/tbl...</div>
-    </div>
-    <button class="s-btn" onclick="doSetup()">✓ შენახვა და გაშვება</button>
+    <div style="font-size:.67em;color:var(--tx3);margin-top:14px;text-align:center">🔒 მხოლოდ შენს ტელეფონზე ინახება</div>
   </div>
-  <div style="font-size:.68em;color:var(--tx3);margin-top:14px;text-align:center">🔒 მხოლოდ შენს მოწყობილობაზე ინახება</div>
 </div>
 
-<!-- SPLASH -->
+<!-- ══ SPLASH ══ -->
 <div id="splash">
   <div class="sp-ic">🍷</div>
   <div style="text-align:center">
@@ -161,7 +196,7 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
   <div class="sp-bar"><div class="sp-f"></div></div>
 </div>
 
-<!-- APP -->
+<!-- ══ APP ══ -->
 <div id="app">
   <div class="hdr">
     <div>
@@ -169,24 +204,29 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
       <div class="hdr-s" id="upt">იტვირთება...</div>
     </div>
     <div class="hdr-r">
-      <button class="btn-sm" onclick="openSetup()" title="პარამეტრები">⚙️</button>
+      <button class="btn-sm" onclick="openSetup()">⚙️</button>
       <button class="btn-sm" id="rbtn" onclick="doRefresh()"><span class="ri">↻</span> განახლება</button>
     </div>
   </div>
 
   <div class="scroll">
     <div class="inn">
+
       <div class="pg on" id="pg-sum">
         <div class="pt">📊 შეჯამება</div>
         <div class="ps" id="sum-sub">იტვირთება...</div>
-        <div class="sg" id="stats"><div class="ld" style="grid-column:1/-1"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div></div>
+        <div class="sg" id="stats">
+          <div class="ld" style="grid-column:1/-1"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div>
+        </div>
         <div id="wlist"></div>
       </div>
+
       <div class="pg" id="pg-tank">
         <div class="pt">🛢️ ავზები</div>
         <div class="ps">მიმდინარე მდგომარეობა</div>
         <div id="tlist"><div class="ld"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div></div>
       </div>
+
       <div class="pg" id="pg-sale">
         <div class="pt">💰 გაყიდვა</div>
         <div class="ps">ახალი ჩანაწერის შეყვანა</div>
@@ -209,6 +249,7 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
           <button class="sub" id="sbtn" onclick="doSale()"><span>✓</span> შენახვა</button>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -229,7 +270,9 @@ function doSetup(){
   const bi=document.getElementById('cfg-bi').value.trim();
   if(!tk||!bi){toast('ორივე ველი შეავსე','err');return;}
   localStorage.setItem('w_tk',tk);localStorage.setItem('w_bi',bi);
-  TK=tk;BI=bi;B=`https://api.airtable.com/v0/${BI}`;H={'Authorization':`Bearer ${TK}`};
+  TK=tk;BI=bi;
+  B=`https://api.airtable.com/v0/${BI}`;
+  H={'Authorization':`Bearer ${TK}`};
   document.getElementById('setup').classList.remove('on');
   document.getElementById('splash').style.display='flex';
   init();
@@ -238,6 +281,7 @@ function openSetup(){
   document.getElementById('cfg-tk').value=TK;
   document.getElementById('cfg-bi').value=BI;
   document.getElementById('setup').classList.add('on');
+  document.getElementById('setup').scrollTop=0;
 }
 
 async function ft(t){
@@ -259,19 +303,38 @@ async function loadAll(){
     const n=new Date();
     document.getElementById('upt').textContent=`განახლდა: ${n.getHours()}:${String(n.getMinutes()).padStart(2,'0')}`;
     document.getElementById('sum-sub').textContent=`${n.toLocaleDateString('ka-GE')} · ${wines.length} სახეობა`;
-  }catch(e){toast('შეცდომა: '+e.message,'err');document.getElementById('upt').textContent='შეცდომა';}
+  }catch(e){
+    toast('შეცდომა: '+e.message,'err');
+    document.getElementById('upt').textContent='შეცდომა';
+  }
 }
 
 function renderSum(){
   const{wines,tanks,tako,cellar,personal}=D;
   const m={};
   wines.forEach(w=>{m[w.id]={id:w.id,name:w.fields['Wine Name']||'–',cat:w.fields['Category']||'',ini:0,cur:0,ts:0,cs:0,ps:0,tr:0,cr:0};});
-  tanks.forEach(t=>{const f=t.fields;(f['Current Wine Type']||[]).forEach(wid=>{if(!m[wid])return;m[wid].ini+=+(f['Initial Volume (L)']||0);m[wid].cur+=+(f['Current Volume (L)']||0);});});
-  const aS=(arr,sk,rk)=>arr.forEach(s=>{const f=s.fields;(f['Wine Type']||[]).forEach(wid=>{if(!m[wid])return;m[wid][sk]+=+(f['Volume (L)']||0);if(rk)m[wid][rk]+=+(f['Total (₾)']||0);});});
+  tanks.forEach(t=>{
+    const f=t.fields;
+    (f['Current Wine Type']||[]).forEach(wid=>{
+      if(!m[wid])return;
+      m[wid].ini+=+(f['Initial Volume (L)']||0);
+      m[wid].cur+=+(f['Current Volume (L)']||0);
+    });
+  });
+  const aS=(arr,sk,rk)=>arr.forEach(s=>{
+    const f=s.fields;
+    (f['Wine Type']||[]).forEach(wid=>{
+      if(!m[wid])return;
+      m[wid][sk]+=+(f['Volume (L)']||0);
+      if(rk)m[wid][rk]+=+(f['Total (₾)']||0);
+    });
+  });
   aS(tako,'ts','tr');aS(cellar,'cs','cr');aS(personal,'ps',null);
   const all=Object.values(m);
-  const tR=all.reduce((s,w)=>s+w.tr+w.cr,0),tS=all.reduce((s,w)=>s+w.ts+w.cs+w.ps,0);
-  const tC=all.reduce((s,w)=>s+w.cur,0),tI=all.reduce((s,w)=>s+w.ini,0);
+  const tR=all.reduce((s,w)=>s+w.tr+w.cr,0);
+  const tS=all.reduce((s,w)=>s+w.ts+w.cs+w.ps,0);
+  const tC=all.reduce((s,w)=>s+w.cur,0);
+  const tI=all.reduce((s,w)=>s+w.ini,0);
   const aT=tanks.filter(t=>(+(t.fields['Current Volume (L)']||0))>0).length;
   document.getElementById('stats').innerHTML=`
     <div class="sc w"><div class="sc-i">💰</div><div class="sc-l">ჯამური შემოსავალი</div><div class="sc-v big">${fn(tR)}</div><div class="sc-u">ლარი · Tako + მარანი</div></div>
@@ -285,9 +348,16 @@ function renderSum(){
     const al=w.cur===0?'empty':(w.cur<200?'low':'ok');
     const aL=al==='empty'?'🔴 ცარიელი':(al==='low'?'🟡 ცოტაა':'🟢 კარგი');
     const pc=al==='ok'?'cg':(al==='low'?'cy':'cr');
-    return`<div class="wc"><div class="wc-h"><div><div class="wc-n">${w.name}</div><div class="wc-c">${w.cat}</div></div><div class="ab a${al}">${aL}</div></div>
-    <div class="wrow"><div class="wg"><div class="wg-v">${fn(w.ini)}</div><div class="wg-l">საწყისი L</div></div><div class="wg"><div class="wg-v">${fn(sold)}</div><div class="wg-l">გაყიდული L</div></div><div class="wg"><div class="wg-v">${fn(w.cur)}</div><div class="wg-l">ნაშთი L</div></div></div>
-    <div class="prg"><div class="prg-bg"><div class="prg-f ${pc}" style="width:${pct}%"></div></div><div class="prg-l"><span>ნაშთი ${pct}%</span><span>${fn(rev)} ₾</span></div></div></div>`;
+    return`<div class="wc">
+      <div class="wc-h"><div><div class="wc-n">${w.name}</div><div class="wc-c">${w.cat}</div></div><div class="ab a${al}">${aL}</div></div>
+      <div class="wrow">
+        <div class="wg"><div class="wg-v">${fn(w.ini)}</div><div class="wg-l">საწყისი L</div></div>
+        <div class="wg"><div class="wg-v">${fn(sold)}</div><div class="wg-l">გაყიდული L</div></div>
+        <div class="wg"><div class="wg-v">${fn(w.cur)}</div><div class="wg-l">ნაშთი L</div></div>
+      </div>
+      <div class="prg"><div class="prg-bg"><div class="prg-f ${pc}" style="width:${pct}%"></div></div>
+      <div class="prg-l"><span>ნაშთი ${pct}%</span><span>${fn(rev)} ₾</span></div></div>
+    </div>`;
   }).join(''):'<div class="emp"><div class="emp-i">🍷</div>მონაცემები არ არის.<br>TANKS-ში Initial Volume შეიყვანე.</div>';
 }
 
@@ -300,12 +370,27 @@ function renderTanks(){
     gt.sort((a,b)=>(+(a.fields['Position']||0))-(+(b.fields['Position']||0)));
     h+=`<div class="tg"><div class="tg-l">${g} ავზები (${gt.length})</div>`;
     gt.forEach(t=>{
-      const f=t.fields,cap=+(f['Capacity (L)']||(+(f['Capacity (tons)')||0)*1000));
+      const f=t.fields;
+      const cap=+(f['Capacity (L)']||(+(f['Capacity (tons)')||0)*1000));
       const cur=+(f['Current Volume (L)']||0),pct=cap>0?Math.round(cur/cap*100):0;
-      const wn=Array.isArray(f['Current Wine Type'])?(D.wines.find(w=>w.id===f['Current Wine Type'][0])?.fields['Wine Name']||'ცარიელი'):(f['Current Wine Type']||'ცარიელი');
+      const wn=Array.isArray(f['Current Wine Type'])
+        ?(D.wines.find(w=>w.id===f['Current Wine Type'][0])?.fields['Wine Name']||'ცარიელი')
+        :(f['Current Wine Type']||'ცარიელი');
       const r=18,ci=2*Math.PI*r,da=ci-(ci*pct/100);
-      const col=pct===0?'#4a2020':(pct<20?'#c9a030':'#3d8f55'),dot=pct===0?'#8b2020':(pct<20?'#c9a030':'#2d6a3f');
-      h+=`<div class="ti"><div class="rw"><svg width="42" height="42" viewBox="0 0 42 42"><circle fill="none" stroke="var(--s3)" stroke-width="4" cx="21" cy="21" r="${r}"/><circle fill="none" stroke="${col}" stroke-width="4" stroke-linecap="round" cx="21" cy="21" r="${r}" stroke-dasharray="${ci.toFixed(1)}" stroke-dashoffset="${da.toFixed(1)}"/></svg><div class="rt">${pct}%</div></div><div class="ti-i"><div class="ti-id">${f['Tank ID']||t.id}</div><div class="ti-w">${wn}</div><div class="ti-v">${fn(cur)} L / ${fn(cap)} L</div></div><div class="td" style="background:${dot}"></div></div>`;
+      const col=pct===0?'#4a2020':(pct<20?'#c9a030':'#3d8f55');
+      const dot=pct===0?'#8b2020':(pct<20?'#c9a030':'#2d6a3f');
+      h+=`<div class="ti">
+        <div class="rw"><svg width="42" height="42" viewBox="0 0 42 42">
+          <circle fill="none" stroke="var(--s3)" stroke-width="4" cx="21" cy="21" r="${r}"/>
+          <circle fill="none" stroke="${col}" stroke-width="4" stroke-linecap="round" cx="21" cy="21" r="${r}" stroke-dasharray="${ci.toFixed(1)}" stroke-dashoffset="${da.toFixed(1)}"/>
+        </svg><div class="rt">${pct}%</div></div>
+        <div class="ti-i">
+          <div class="ti-id">${f['Tank ID']||t.id}</div>
+          <div class="ti-w">${wn}</div>
+          <div class="ti-v">${fn(cur)} L / ${fn(cap)} L</div>
+        </div>
+        <div class="td" style="background:${dot}"></div>
+      </div>`;
     });
     h+='</div>';
   });
@@ -314,16 +399,24 @@ function renderTanks(){
 
 function fillForm(){
   const s=document.getElementById('sw');
-  s.innerHTML='<option value="">აირჩიე ღვინო...</option>'+D.wines.filter(w=>w.fields['Wine Name']).map(w=>`<option value="${w.id}">${w.fields['Wine Name']}</option>`).join('');
+  s.innerHTML='<option value="">აირჩიე ღვინო...</option>'+
+    D.wines.filter(w=>w.fields['Wine Name']).map(w=>`<option value="${w.id}">${w.fields['Wine Name']}</option>`).join('');
 }
 function updTanks(){
   const wid=document.getElementById('sw').value,s=document.getElementById('st');
   if(!wid){s.innerHTML='<option>ჯერ ღვინო აირჩიე</option>';return;}
-  const lk=D.tanks.filter(t=>{const wt=t.fields['Current Wine Type']||[];return wt.includes(wid)&&(+(t.fields['Current Volume (L)']||0))>0;});
-  s.innerHTML=lk.length?lk.map(t=>`<option value="${t.id}">${t.fields['Tank ID']} — ${fn(t.fields['Current Volume (L)']||0)} L</option>`).join(''):'<option>ეს ღვინო ავზებში ვერ მოიძებნა</option>';
+  const lk=D.tanks.filter(t=>{
+    const wt=t.fields['Current Wine Type']||[];
+    return wt.includes(wid)&&(+(t.fields['Current Volume (L)']||0))>0;
+  });
+  s.innerHTML=lk.length
+    ?lk.map(t=>`<option value="${t.id}">${t.fields['Tank ID']} — ${fn(t.fields['Current Volume (L)']||0)} L</option>`).join('')
+    :'<option>ეს ღვინო ავზებში ვერ მოიძებნა</option>';
 }
 function setCh(c,el){
-  ch=c;document.querySelectorAll('.ct').forEach(e=>e.classList.remove('on'));el.classList.add('on');
+  ch=c;
+  document.querySelectorAll('.ct').forEach(e=>e.classList.remove('on'));
+  el.classList.add('on');
   document.getElementById('fpg').style.display=c==='personal'?'none':'block';
   document.getElementById('fll').textContent=c==='personal'?'ვინ აიღო (Lasha/Kako)':'კლიენტი';
 }
@@ -336,9 +429,13 @@ async function doSale(){
   const fields={'Wine Type':[wid],'Tank':[tid],'Volume (L)':vol,'Date':new Date().toISOString().split('T')[0]};
   if(ch!=='personal')fields['Price per L (₾)']=pr;
   if(cl)fields[ch==='personal'?'Taken By':ch==='tako'?'Client':'Customer']=cl;
-  const btn=document.getElementById('sbtn');btn.disabled=true;btn.textContent='ინახება...';
+  const btn=document.getElementById('sbtn');
+  btn.disabled=true;btn.textContent='ინახება...';
   try{
-    const r=await fetch(`${B}/${encodeURIComponent(tbl)}`,{method:'POST',headers:{...H,'Content-Type':'application/json'},body:JSON.stringify({fields})});
+    const r=await fetch(`${B}/${encodeURIComponent(tbl)}`,{
+      method:'POST',headers:{...H,'Content-Type':'application/json'},
+      body:JSON.stringify({fields})
+    });
     if(!r.ok){const e=await r.json();throw new Error(e.error?.message||r.status);}
     toast('✅ გაყიდვა შენახულია!','ok');
     ['sv','sp','sc'].forEach(id=>document.getElementById(id).value='');
@@ -350,15 +447,18 @@ async function doSale(){
 function goPage(n,el){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.ni').forEach(i=>i.classList.remove('on'));
-  document.getElementById('pg-'+n).classList.add('on');el.classList.add('on');
+  document.getElementById('pg-'+n).classList.add('on');
+  el.classList.add('on');
   document.querySelector('.scroll').scrollTop=0;
 }
 async function doRefresh(){
-  const b=document.getElementById('rbtn');b.classList.add('sp');await loadAll();b.classList.remove('sp');
+  const b=document.getElementById('rbtn');
+  b.classList.add('sp');await loadAll();b.classList.remove('sp');
 }
 function toast(msg,type=''){
   document.querySelector('.toast')?.remove();
-  const t=document.createElement('div');t.className='toast '+type;t.textContent=msg;
+  const t=document.createElement('div');
+  t.className='toast '+type;t.textContent=msg;
   document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
 }
 function fn(n){return Number(n||0).toLocaleString('ka-GE',{maximumFractionDigits:1});}
@@ -371,7 +471,7 @@ window.addEventListener('load',()=>{
   if(!TK||!BI){
     document.getElementById('splash').style.display='none';
     document.getElementById('setup').classList.add('on');
-  } else { init(); }
+  }else{init();}
 });
 </script>
 </body>
