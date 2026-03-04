@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="მეღვინეობა">
@@ -13,40 +14,19 @@
 :root{--bg:#0d0503;--s1:#1e0f08;--s2:#2a1510;--s3:#321a13;--wine:#8b1a2b;--wine2:#a82035;--gold:#c9953a;--gold2:#e8b85a;--cream:#f5e6c8;--tx:#f0dfc0;--tx2:#b89870;--tx3:#7a6045;--g1:#2d6a3f;--g2:#3d8f55;--b1:rgba(201,149,58,.15);--b2:rgba(201,149,58,.08);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(--tx);height:100dvh;overflow:hidden;}
-
-/* ── SETUP — simple top scroll, no centering ── */
-#setup{
-  position:fixed;inset:0;z-index:3000;background:var(--bg);
-  overflow-y:scroll;-webkit-overflow-scrolling:touch;
-  display:none;
-}
+#setup{position:fixed;inset:0;z-index:3000;background:var(--bg);overflow-y:scroll;-webkit-overflow-scrolling:touch;display:none;}
 #setup.on{display:block;}
 .s-wrap{padding:48px 20px 60px;display:flex;flex-direction:column;align-items:center;}
-.s-logo{font-size:2.8em;margin-bottom:10px;text-align:center;}
 .s-title{font-family:'Cormorant Garamond',serif;font-size:1.85em;font-weight:700;color:var(--gold2);margin-bottom:3px;text-align:center;}
 .s-sub{font-size:.74em;color:var(--tx3);margin-bottom:28px;text-align:center;}
 .s-card{width:100%;max-width:400px;background:var(--s1);border:1px solid var(--b2);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:18px;}
 .s-field label{font-size:.68em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;}
-.s-field input{
-  width:100%;background:var(--s2);border:1px solid var(--b1);
-  border-radius:10px;padding:14px 13px;color:var(--tx);
-  font-size:.9em;outline:none;font-family:monospace;
-  -webkit-appearance:none;appearance:none;
-  /* prevent zoom on focus in iOS */
-  font-size:16px;
-}
+.s-field input{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px 13px;color:var(--tx);font-size:16px;outline:none;font-family:monospace;-webkit-appearance:none;}
 .s-field input:focus{border-color:var(--gold);}
 .s-hint{font-size:.65em;color:var(--tx3);margin-top:6px;line-height:1.5;}
-.s-btn{
-  width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));
-  border:none;border-radius:12px;padding:16px;
-  color:var(--cream);font-size:1em;font-weight:600;
-  font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;
-}
+.s-btn{width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));border:none;border-radius:12px;padding:16px;color:var(--cream);font-size:1em;font-weight:600;font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;}
 .s-btn:active{opacity:.85;}
 .s-note{font-size:.67em;color:var(--tx3);margin-top:16px;text-align:center;}
-
-/* ── SPLASH ── */
 #splash{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .7s;}
 #splash.off{opacity:0;pointer-events:none;}
 .sp-ic{font-size:3.8em;animation:pp 2s ease infinite;}
@@ -55,8 +35,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sp-bar{width:130px;height:2px;background:var(--s3);border-radius:2px;overflow:hidden;}
 .sp-f{height:100%;background:linear-gradient(90deg,var(--wine),var(--gold));animation:ld 2s forwards;}
 @keyframes ld{from{width:0}to{width:100%}}
-
-/* ── APP ── */
 #app{display:flex;flex-direction:column;height:100dvh;}
 .hdr{flex-shrink:0;background:rgba(13,5,3,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:13px 16px 11px;display:flex;align-items:center;justify-content:space-between;}
 .hdr-l{font-family:'Cormorant Garamond',serif;font-size:1.3em;font-weight:700;color:var(--gold2);}
@@ -75,15 +53,11 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .ni:active{transform:scale(.9);}
 .ni-ic{font-size:1.25em;}
 .ni-lb{font-size:.59em;}
-
-/* ── PAGES ── */
 .pg{display:none;animation:fu .25s ease;}
 .pg.on{display:block;}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .pt{font-family:'Cormorant Garamond',serif;font-size:1.4em;font-weight:600;color:var(--gold2);margin-bottom:3px;}
 .ps{font-size:.73em;color:var(--tx3);margin-bottom:16px;}
-
-/* ── STATS ── */
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
 .sc{background:var(--s1);border:1px solid var(--b2);border-radius:13px;padding:14px;position:relative;overflow:hidden;}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--wine),var(--gold));}
@@ -93,8 +67,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sc-v.big{font-size:2.2em;}
 .sc-u{font-size:.61em;color:var(--tx3);margin-top:2px;}
 .sc-i{position:absolute;right:11px;top:11px;font-size:1.2em;opacity:.2;}
-
-/* ── WINE ── */
 .wc{background:var(--s1);border:1px solid var(--b2);border-radius:13px;padding:13px;margin-bottom:9px;}
 .wc-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .wc-n{font-family:'Cormorant Garamond',serif;font-size:1.1em;font-weight:600;color:var(--cream);}
@@ -114,8 +86,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .cy{background:linear-gradient(90deg,#7a6010,#c9a030);}
 .cr{background:linear-gradient(90deg,#8b2020,#c03030);}
 .prg-l{display:flex;justify-content:space-between;font-size:.6em;color:var(--tx3);margin-top:4px;}
-
-/* ── TANKS ── */
 .tg{margin-bottom:16px;}
 .tg-l{font-size:.66em;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;padding-bottom:7px;border-bottom:1px solid var(--b2);margin-bottom:8px;}
 .ti{background:var(--s1);border:1px solid var(--b2);border-radius:12px;padding:12px 13px;margin-bottom:7px;display:flex;align-items:center;gap:11px;}
@@ -127,8 +97,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .ti-w{font-size:.86em;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ti-v{font-size:.69em;color:var(--tx3);margin-top:1px;}
 .td{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-
-/* ── FORM ── */
 .chs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
 .ct{background:var(--s2);border:1px solid var(--b2);border-radius:10px;padding:10px 5px;text-align:center;cursor:pointer;transition:all .2s;}
 .ct.on{background:var(--wine);border-color:var(--wine2);}
@@ -144,8 +112,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sub{width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));border:none;border-radius:11px;padding:14px;color:var(--cream);font-size:.91em;font-weight:600;font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;}
 .sub:active{transform:scale(.97);filter:brightness(.9);}
 .sub:disabled{opacity:.5;}
-
-/* ── TOAST ── */
 .toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:var(--s3);border:1px solid var(--b1);color:var(--tx);border-radius:12px;padding:10px 18px;font-size:.81em;z-index:500;white-space:nowrap;pointer-events:none;animation:tst .25s ease;}
 .toast.ok{border-color:rgba(45,106,63,.5);color:#6fcf8a;}
 .toast.err{border-color:rgba(139,32,32,.5);color:#f07070;}
@@ -159,30 +125,28 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 </head>
 <body>
 
-<!-- ══ SETUP ══ -->
 <div id="setup">
   <div class="s-wrap">
-    <div class="s-logo">🍷</div>
+    <div style="font-size:2.8em;margin-bottom:10px;text-align:center">🍷</div>
     <div class="s-title">მეღვინეობა</div>
     <div class="s-sub">Airtable კავშირი — ერთხელ შეავსე</div>
     <div class="s-card">
       <div class="s-field">
         <label>Airtable API Token</label>
         <input id="cfg-tk" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="patXXXXXXXX.xxxxxxxxxxxxxxxx...">
-        <div class="s-hint">Airtable.com → Developer Hub → Personal access tokens → შენი token-ი</div>
+        <div class="s-hint">Airtable.com → Developer Hub → Personal access tokens</div>
       </div>
       <div class="s-field">
         <label>Base ID</label>
         <input id="cfg-bi" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="appXXXXXXXXXXXXXX">
-        <div class="s-hint">Airtable-ის URL: airtable.com/<b style="color:var(--tx2)">appXXX...</b>/tbl...</div>
+        <div class="s-hint">URL-ში: airtable.com/<b style="color:var(--tx2)">appXXX...</b>/tbl...</div>
       </div>
       <button class="s-btn" onclick="doSetup()">✓ შენახვა და გაშვება</button>
     </div>
-    <div class="s-note">🔒 მხოლოდ შენს ტელეფონზე ინახება · სხვა ვერ ნახავს</div>
+    <div class="s-note">🔒 მხოლოდ შენს ტელეფონზე ინახება</div>
   </div>
 </div>
 
-<!-- ══ SPLASH ══ -->
 <div id="splash">
   <div class="sp-ic">🍷</div>
   <div style="text-align:center">
@@ -192,7 +156,6 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
   <div class="sp-bar"><div class="sp-f"></div></div>
 </div>
 
-<!-- ══ APP ══ -->
 <div id="app">
   <div class="hdr">
     <div>
@@ -204,25 +167,19 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
       <button class="btn-sm" id="rbtn" onclick="doRefresh()"><span class="ri">↻</span> განახლება</button>
     </div>
   </div>
-
   <div class="scroll">
     <div class="inn">
-
       <div class="pg on" id="pg-sum">
         <div class="pt">📊 შეჯამება</div>
         <div class="ps" id="sum-sub">იტვირთება...</div>
-        <div class="sg" id="stats">
-          <div class="ld" style="grid-column:1/-1"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div>
-        </div>
+        <div class="sg" id="stats"><div class="ld" style="grid-column:1/-1"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div></div>
         <div id="wlist"></div>
       </div>
-
       <div class="pg" id="pg-tank">
         <div class="pt">🛢️ ავზები</div>
         <div class="ps">მიმდინარე მდგომარეობა</div>
         <div id="tlist"><div class="ld"><div class="ld-d"></div><div class="ld-t">იტვირთება...</div></div></div>
       </div>
-
       <div class="pg" id="pg-sale">
         <div class="pt">💰 გაყიდვა</div>
         <div class="ps">ახალი ჩანაწერის შეყვანა</div>
@@ -245,10 +202,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
           <button class="sub" id="sbtn" onclick="doSale()"><span>✓</span> შენახვა</button>
         </div>
       </div>
-
     </div>
   </div>
-
   <nav class="nav">
     <button class="ni on" onclick="goPage('sum',this)"><span class="ni-ic">📊</span><span class="ni-lb">შეჯამება</span></button>
     <button class="ni" onclick="goPage('tank',this)"><span class="ni-ic">🛢️</span><span class="ni-lb">ავზები</span></button>
@@ -257,22 +212,27 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 </div>
 
 <script>
-let TK=localStorage.getItem('w_tk')||'',BI=localStorage.getItem('w_bi')||'';
-let B=`https://api.airtable.com/v0/${BI}`,H={'Authorization':`Bearer ${TK}`};
-let D={wines:[],tanks:[],tako:[],cellar:[],personal:[]},ch='tako';
+var TK=localStorage.getItem('w_tk')||'';
+var BI=localStorage.getItem('w_bi')||'';
+var B='https://api.airtable.com/v0/'+BI;
+var H={'Authorization':'Bearer '+TK};
+var D={wines:[],tanks:[],tako:[],cellar:[],personal:[]};
+var ch='tako';
 
 function doSetup(){
-  const tk=document.getElementById('cfg-tk').value.trim();
-  const bi=document.getElementById('cfg-bi').value.trim();
+  var tk=document.getElementById('cfg-tk').value.trim();
+  var bi=document.getElementById('cfg-bi').value.trim();
   if(!tk||!bi){toast('ორივე ველი შეავსე','err');return;}
-  localStorage.setItem('w_tk',tk);localStorage.setItem('w_bi',bi);
-  TK=tk;BI=bi;
-  B=`https://api.airtable.com/v0/${BI}`;
-  H={'Authorization':`Bearer ${TK}`};
+  localStorage.setItem('w_tk',tk);
+  localStorage.setItem('w_bi',bi);
+  TK=tk; BI=bi;
+  B='https://api.airtable.com/v0/'+BI;
+  H={'Authorization':'Bearer '+TK};
   document.getElementById('setup').classList.remove('on');
   document.getElementById('splash').style.display='flex';
   init();
 }
+
 function openSetup(){
   document.getElementById('cfg-tk').value=TK;
   document.getElementById('cfg-bi').value=BI;
@@ -280,113 +240,147 @@ function openSetup(){
   document.getElementById('setup').scrollTop=0;
 }
 
-async function ft(t){
-  let r=[],o=null;
-  do{
-    const u=`${B}/${encodeURIComponent(t)}?pageSize=100${o?'&offset='+o:''}`;
-    const x=await fetch(u,{headers:H});
-    if(!x.ok)throw new Error(t+' '+x.status);
-    const d=await x.json();r=r.concat(d.records);o=d.offset;
-  }while(o);return r;
+async function ft(tbl){
+  var recs=[]; var off=null;
+  do {
+    var url=B+'/'+encodeURIComponent(tbl)+'?pageSize=100'+(off?'&offset='+off:'');
+    var resp=await fetch(url,{headers:H});
+    if(!resp.ok) throw new Error(tbl+' '+resp.status);
+    var data=await resp.json();
+    recs=recs.concat(data.records);
+    off=data.offset||null;
+  } while(off);
+  return recs;
 }
 
 async function loadAll(){
   try{
-    const[wines,tanks,tako,cellar,personal]=await Promise.all([
-      ft('WINE_TYPES'),ft('TANKS'),ft('SALES_TAKO'),ft('SALES_CELLAR'),ft('SALES_PERSONAL')]);
-    D={wines,tanks,tako,cellar,personal};
-    renderSum();renderTanks();fillForm();
-    const n=new Date();
-    document.getElementById('upt').textContent=`განახლდა: ${n.getHours()}:${String(n.getMinutes()).padStart(2,'0')}`;
-    document.getElementById('sum-sub').textContent=`${n.toLocaleDateString('ka-GE')} · ${wines.length} სახეობა`;
-  }catch(e){
+    var results=await Promise.all([
+      ft('WINE_TYPES'),ft('TANKS'),
+      ft('SALES_TAKO'),ft('SALES_CELLAR'),ft('SALES_PERSONAL')
+    ]);
+    D={wines:results[0],tanks:results[1],tako:results[2],cellar:results[3],personal:results[4]};
+    renderSum(); renderTanks(); fillForm();
+    var n=new Date();
+    document.getElementById('upt').textContent='განახლდა: '+n.getHours()+':'+String(n.getMinutes()).padStart(2,'0');
+    document.getElementById('sum-sub').textContent=n.toLocaleDateString('ka-GE')+' · '+results[0].length+' სახეობა';
+  } catch(e){
     toast('შეცდომა: '+e.message,'err');
     document.getElementById('upt').textContent='შეცდომა';
   }
 }
 
 function renderSum(){
-  const{wines,tanks,tako,cellar,personal}=D;
-  const m={};
-  wines.forEach(w=>{m[w.id]={id:w.id,name:w.fields['Wine Name']||'–',cat:w.fields['Category']||'',ini:0,cur:0,ts:0,cs:0,ps:0,tr:0,cr:0};});
-  tanks.forEach(t=>{
-    const f=t.fields;
-    (f['Current Wine Type']||[]).forEach(wid=>{
-      if(!m[wid])return;
-      m[wid].ini+=+(f['Initial Volume (L)']||0);
-      m[wid].cur+=+(f['Current Volume (L)']||0);
+  var wines=D.wines, tanks=D.tanks, tako=D.tako, cellar=D.cellar, personal=D.personal;
+  var m={};
+  wines.forEach(function(w){
+    m[w.id]={id:w.id,name:w.fields['Wine Name']||'–',cat:w.fields['Category']||'',
+      ini:0,cur:0,ts:0,cs:0,ps:0,tr:0,cr:0};
+  });
+  tanks.forEach(function(t){
+    var f=t.fields;
+    var wids=f['Current Wine Type']||[];
+    wids.forEach(function(wid){
+      if(!m[wid]) return;
+      m[wid].ini+=Number(f['Initial Volume (L)']||0);
+      m[wid].cur+=Number(f['Current Volume (L)']||0);
     });
   });
-  const aS=(arr,sk,rk)=>arr.forEach(s=>{
-    const f=s.fields;
-    (f['Wine Type']||[]).forEach(wid=>{
-      if(!m[wid])return;
-      m[wid][sk]+=+(f['Volume (L)']||0);
-      if(rk)m[wid][rk]+=+(f['Total (₾)']||0);
+  function addSales(arr,sk,rk){
+    arr.forEach(function(s){
+      var f=s.fields;
+      var wids=f['Wine Type']||[];
+      wids.forEach(function(wid){
+        if(!m[wid]) return;
+        m[wid][sk]+=Number(f['Volume (L)']||0);
+        if(rk) m[wid][rk]+=Number(f['Total (₾)']||0);
+      });
     });
-  });
-  aS(tako,'ts','tr');aS(cellar,'cs','cr');aS(personal,'ps',null);
-  const all=Object.values(m);
-  const tR=all.reduce((s,w)=>s+w.tr+w.cr,0);
-  const tS=all.reduce((s,w)=>s+w.ts+w.cs+w.ps,0);
-  const tC=all.reduce((s,w)=>s+w.cur,0);
-  const tI=all.reduce((s,w)=>s+w.ini,0);
-  const aT=tanks.filter(t=>(+(t.fields['Current Volume (L)']||0))>0).length;
-  document.getElementById('stats').innerHTML=`
-    <div class="sc w"><div class="sc-i">💰</div><div class="sc-l">ჯამური შემოსავალი</div><div class="sc-v big">${fn(tR)}</div><div class="sc-u">ლარი · Tako + მარანი</div></div>
-    <div class="sc"><div class="sc-i">📦</div><div class="sc-l">გაყიდული</div><div class="sc-v">${fn(tS)}</div><div class="sc-u">ლიტრი</div></div>
-    <div class="sc"><div class="sc-i">🛢️</div><div class="sc-l">ნაშთი</div><div class="sc-v">${fn(tC)}</div><div class="sc-u">ლიტრი</div></div>
-    <div class="sc"><div class="sc-i">🍷</div><div class="sc-l">საწყისი</div><div class="sc-v">${fn(tI)}</div><div class="sc-u">ლიტრი</div></div>
-    <div class="sc"><div class="sc-i">✅</div><div class="sc-l">აქტიური ავზები</div><div class="sc-v">${aT}</div><div class="sc-u">სულ ${tanks.length}-დან</div></div>`;
-  const act=all.filter(w=>w.ini>0||w.cur>0).sort((a,b)=>b.cur-a.cur);
-  document.getElementById('wlist').innerHTML=act.length?act.map(w=>{
-    const sold=w.ts+w.cs+w.ps,rev=w.tr+w.cr,pct=w.ini>0?Math.round(w.cur/w.ini*100):0;
-    const al=w.cur===0?'empty':(w.cur<200?'low':'ok');
-    const aL=al==='empty'?'🔴 ცარიელი':(al==='low'?'🟡 ცოტაა':'🟢 კარგი');
-    const pc=al==='ok'?'cg':(al==='low'?'cy':'cr');
-    return`<div class="wc">
-      <div class="wc-h"><div><div class="wc-n">${w.name}</div><div class="wc-c">${w.cat}</div></div><div class="ab a${al}">${aL}</div></div>
-      <div class="wrow">
-        <div class="wg"><div class="wg-v">${fn(w.ini)}</div><div class="wg-l">საწყისი L</div></div>
-        <div class="wg"><div class="wg-v">${fn(sold)}</div><div class="wg-l">გაყიდული L</div></div>
-        <div class="wg"><div class="wg-v">${fn(w.cur)}</div><div class="wg-l">ნაშთი L</div></div>
-      </div>
-      <div class="prg"><div class="prg-bg"><div class="prg-f ${pc}" style="width:${pct}%"></div></div>
-      <div class="prg-l"><span>ნაშთი ${pct}%</span><span>${fn(rev)} ₾</span></div></div>
-    </div>`;
-  }).join(''):'<div class="emp"><div class="emp-i">🍷</div>მონაცემები არ არის.<br>TANKS-ში Initial Volume შეიყვანე.</div>';
+  }
+  addSales(tako,'ts','tr');
+  addSales(cellar,'cs','cr');
+  addSales(personal,'ps',null);
+  var all=Object.values(m);
+  var tR=all.reduce(function(s,w){return s+w.tr+w.cr;},0);
+  var tS=all.reduce(function(s,w){return s+w.ts+w.cs+w.ps;},0);
+  var tC=all.reduce(function(s,w){return s+w.cur;},0);
+  var tI=all.reduce(function(s,w){return s+w.ini;},0);
+  var aT=tanks.filter(function(t){return Number(t.fields['Current Volume (L)']||0)>0;}).length;
+  document.getElementById('stats').innerHTML=
+    '<div class="sc w"><div class="sc-i">💰</div><div class="sc-l">ჯამური შემოსავალი</div><div class="sc-v big">'+fn(tR)+'</div><div class="sc-u">ლარი · Tako + მარანი</div></div>'+
+    '<div class="sc"><div class="sc-i">📦</div><div class="sc-l">გაყიდული</div><div class="sc-v">'+fn(tS)+'</div><div class="sc-u">ლიტრი</div></div>'+
+    '<div class="sc"><div class="sc-i">🛢️</div><div class="sc-l">ნაშთი</div><div class="sc-v">'+fn(tC)+'</div><div class="sc-u">ლიტრი</div></div>'+
+    '<div class="sc"><div class="sc-i">🍷</div><div class="sc-l">საწყისი</div><div class="sc-v">'+fn(tI)+'</div><div class="sc-u">ლიტრი</div></div>'+
+    '<div class="sc"><div class="sc-i">✅</div><div class="sc-l">აქტიური ავზები</div><div class="sc-v">'+aT+'</div><div class="sc-u">სულ '+tanks.length+'-დან</div></div>';
+  var act=all.filter(function(w){return w.ini>0||w.cur>0;}).sort(function(a,b){return b.cur-a.cur;});
+  if(!act.length){
+    document.getElementById('wlist').innerHTML='<div class="emp"><div class="emp-i">🍷</div>მონაცემები არ არის.<br>TANKS-ში Initial Volume შეიყვანე.</div>';
+    return;
+  }
+  document.getElementById('wlist').innerHTML=act.map(function(w){
+    var sold=w.ts+w.cs+w.ps;
+    var rev=w.tr+w.cr;
+    var pct=w.ini>0?Math.round(w.cur/w.ini*100):0;
+    var al=w.cur===0?'empty':(w.cur<200?'low':'ok');
+    var aL=al==='empty'?'🔴 ცარიელი':(al==='low'?'🟡 ცოტაა':'🟢 კარგი');
+    var pc=al==='ok'?'cg':(al==='low'?'cy':'cr');
+    return '<div class="wc">'+
+      '<div class="wc-h"><div><div class="wc-n">'+w.name+'</div><div class="wc-c">'+w.cat+'</div></div><div class="ab a'+al+'">'+aL+'</div></div>'+
+      '<div class="wrow">'+
+        '<div class="wg"><div class="wg-v">'+fn(w.ini)+'</div><div class="wg-l">საწყისი L</div></div>'+
+        '<div class="wg"><div class="wg-v">'+fn(sold)+'</div><div class="wg-l">გაყიდული L</div></div>'+
+        '<div class="wg"><div class="wg-v">'+fn(w.cur)+'</div><div class="wg-l">ნაშთი L</div></div>'+
+      '</div>'+
+      '<div class="prg"><div class="prg-bg"><div class="prg-f '+pc+'" style="width:'+pct+'%"></div></div>'+
+      '<div class="prg-l"><span>ნაშთი '+pct+'%</span><span>'+fn(rev)+' ₾</span></div></div>'+
+    '</div>';
+  }).join('');
 }
 
 function renderTanks(){
-  const{tanks}=D;const gr={};
-  tanks.forEach(t=>{const tp=t.fields['Type']||'Other';if(!gr[tp])gr[tp]=[];gr[tp].push(t);});
-  let h='';
-  ['Standard','Black','Rocket','Big'].forEach(g=>{
-    const gt=gr[g];if(!gt||!gt.length)return;
-    gt.sort((a,b)=>(+(a.fields['Position']||0))-(+(b.fields['Position']||0)));
-    h+=`<div class="tg"><div class="tg-l">${g} ავზები (${gt.length})</div>`;
-    gt.forEach(t=>{
-      const f=t.fields;
-      const cap=+(f['Capacity (L)']||(+(f['Capacity (tons)')||0)*1000));
-      const cur=+(f['Current Volume (L)']||0),pct=cap>0?Math.round(cur/cap*100):0;
-      const wn=Array.isArray(f['Current Wine Type'])
-        ?(D.wines.find(w=>w.id===f['Current Wine Type'][0])?.fields['Wine Name']||'ცარიელი')
-        :(f['Current Wine Type']||'ცარიელი');
-      const r=18,ci=2*Math.PI*r,da=ci-(ci*pct/100);
-      const col=pct===0?'#4a2020':(pct<20?'#c9a030':'#3d8f55');
-      const dot=pct===0?'#8b2020':(pct<20?'#c9a030':'#2d6a3f');
-      h+=`<div class="ti">
-        <div class="rw"><svg width="42" height="42" viewBox="0 0 42 42">
-          <circle fill="none" stroke="var(--s3)" stroke-width="4" cx="21" cy="21" r="${r}"/>
-          <circle fill="none" stroke="${col}" stroke-width="4" stroke-linecap="round" cx="21" cy="21" r="${r}" stroke-dasharray="${ci.toFixed(1)}" stroke-dashoffset="${da.toFixed(1)}"/>
-        </svg><div class="rt">${pct}%</div></div>
-        <div class="ti-i">
-          <div class="ti-id">${f['Tank ID']||t.id}</div>
-          <div class="ti-w">${wn}</div>
-          <div class="ti-v">${fn(cur)} L / ${fn(cap)} L</div>
-        </div>
-        <div class="td" style="background:${dot}"></div>
-      </div>`;
+  var tanks=D.tanks; var gr={};
+  tanks.forEach(function(t){
+    var tp=t.fields['Type']||'Other';
+    if(!gr[tp]) gr[tp]=[];
+    gr[tp].push(t);
+  });
+  var h='';
+  ['Standard','Black','Rocket','Big'].forEach(function(g){
+    var gt=gr[g];
+    if(!gt||!gt.length) return;
+    gt.sort(function(a,b){return Number(a.fields['Position']||0)-Number(b.fields['Position']||0);});
+    h+='<div class="tg"><div class="tg-l">'+g+' ავზები ('+gt.length+')</div>';
+    gt.forEach(function(t){
+      var f=t.fields;
+      /* ── FIXED: bracket bug was here ── */
+      var capL=Number(f['Capacity (L)']||0);
+      var capT=Number(f['Capacity (tons)']||0);
+      var cap=capL>0?capL:capT*1000;
+      var cur=Number(f['Current Volume (L)']||0);
+      var pct=cap>0?Math.round(cur/cap*100):0;
+      var wids=f['Current Wine Type'];
+      var wn='ცარიელი';
+      if(Array.isArray(wids)&&wids.length){
+        var found=D.wines.find(function(w){return w.id===wids[0];});
+        if(found) wn=found.fields['Wine Name']||'ცარიელი';
+      }
+      var r=18;
+      var ci=2*Math.PI*r;
+      var da=ci-(ci*pct/100);
+      var col=pct===0?'#4a2020':(pct<20?'#c9a030':'#3d8f55');
+      var dot=pct===0?'#8b2020':(pct<20?'#c9a030':'#2d6a3f');
+      h+='<div class="ti">'+
+        '<div class="rw"><svg width="42" height="42" viewBox="0 0 42 42">'+
+          '<circle fill="none" stroke="var(--s3)" stroke-width="4" cx="21" cy="21" r="'+r+'"/>'+
+          '<circle fill="none" stroke="'+col+'" stroke-width="4" stroke-linecap="round" cx="21" cy="21" r="'+r+'" stroke-dasharray="'+ci.toFixed(1)+'" stroke-dashoffset="'+da.toFixed(1)+'"/>'+
+        '</svg><div class="rt">'+pct+'%</div></div>'+
+        '<div class="ti-i">'+
+          '<div class="ti-id">'+(f['Tank ID']||t.id)+'</div>'+
+          '<div class="ti-w">'+wn+'</div>'+
+          '<div class="ti-v">'+fn(cur)+' L / '+fn(cap)+' L</div>'+
+        '</div>'+
+        '<div class="td" style="background:'+dot+'"></div>'+
+      '</div>';
     });
     h+='</div>';
   });
@@ -394,82 +388,105 @@ function renderTanks(){
 }
 
 function fillForm(){
-  const s=document.getElementById('sw');
+  var s=document.getElementById('sw');
   s.innerHTML='<option value="">აირჩიე ღვინო...</option>'+
-    D.wines.filter(w=>w.fields['Wine Name']).map(w=>`<option value="${w.id}">${w.fields['Wine Name']}</option>`).join('');
+    D.wines.filter(function(w){return w.fields['Wine Name'];})
+    .map(function(w){return '<option value="'+w.id+'">'+w.fields['Wine Name']+'</option>';}).join('');
 }
+
 function updTanks(){
-  const wid=document.getElementById('sw').value,s=document.getElementById('st');
+  var wid=document.getElementById('sw').value;
+  var s=document.getElementById('st');
   if(!wid){s.innerHTML='<option>ჯერ ღვინო აირჩიე</option>';return;}
-  const lk=D.tanks.filter(t=>{
-    const wt=t.fields['Current Wine Type']||[];
-    return wt.includes(wid)&&(+(t.fields['Current Volume (L)']||0))>0;
+  var lk=D.tanks.filter(function(t){
+    var wt=t.fields['Current Wine Type']||[];
+    return wt.indexOf(wid)>=0&&Number(t.fields['Current Volume (L)']||0)>0;
   });
   s.innerHTML=lk.length
-    ?lk.map(t=>`<option value="${t.id}">${t.fields['Tank ID']} — ${fn(t.fields['Current Volume (L)']||0)} L</option>`).join('')
+    ?lk.map(function(t){return '<option value="'+t.id+'">'+t.fields['Tank ID']+' — '+fn(t.fields['Current Volume (L)']||0)+' L</option>';}).join('')
     :'<option>ეს ღვინო ავზებში ვერ მოიძებნა</option>';
 }
+
 function setCh(c,el){
   ch=c;
-  document.querySelectorAll('.ct').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.ct').forEach(function(e){e.classList.remove('on');});
   el.classList.add('on');
   document.getElementById('fpg').style.display=c==='personal'?'none':'block';
   document.getElementById('fll').textContent=c==='personal'?'ვინ აიღო (Lasha/Kako)':'კლიენტი';
 }
+
 async function doSale(){
-  const wid=document.getElementById('sw').value,tid=document.getElementById('st').value;
-  const vol=parseFloat(document.getElementById('sv').value),pr=parseFloat(document.getElementById('sp').value)||0;
-  const cl=document.getElementById('sc').value.trim();
+  var wid=document.getElementById('sw').value;
+  var tid=document.getElementById('st').value;
+  var vol=parseFloat(document.getElementById('sv').value);
+  var pr=parseFloat(document.getElementById('sp').value)||0;
+  var cl=document.getElementById('sc').value.trim();
   if(!wid||!tid||!vol||vol<=0){toast('ყველა სავალდებულო ველი შეავსე','err');return;}
-  const tbl={tako:'SALES_TAKO',cellar:'SALES_CELLAR',personal:'SALES_PERSONAL'}[ch];
-  const fields={'Wine Type':[wid],'Tank':[tid],'Volume (L)':vol,'Date':new Date().toISOString().split('T')[0]};
-  if(ch!=='personal')fields['Price per L (₾)']=pr;
-  if(cl)fields[ch==='personal'?'Taken By':ch==='tako'?'Client':'Customer']=cl;
-  const btn=document.getElementById('sbtn');
-  btn.disabled=true;btn.textContent='ინახება...';
+  var tblMap={tako:'SALES_TAKO',cellar:'SALES_CELLAR',personal:'SALES_PERSONAL'};
+  var tbl=tblMap[ch];
+  var fields={'Wine Type':[wid],'Tank':[tid],'Volume (L)':vol,'Date':new Date().toISOString().split('T')[0]};
+  if(ch!=='personal') fields['Price per L (₾)']=pr;
+  if(cl){
+    var cf=ch==='personal'?'Taken By':(ch==='tako'?'Client':'Customer');
+    fields[cf]=cl;
+  }
+  var btn=document.getElementById('sbtn');
+  btn.disabled=true; btn.textContent='ინახება...';
   try{
-    const r=await fetch(`${B}/${encodeURIComponent(tbl)}`,{
-      method:'POST',headers:{...H,'Content-Type':'application/json'},
-      body:JSON.stringify({fields})
+    var resp=await fetch(B+'/'+encodeURIComponent(tbl),{
+      method:'POST',
+      headers:Object.assign({},H,{'Content-Type':'application/json'}),
+      body:JSON.stringify({fields:fields})
     });
-    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||r.status);}
+    if(!resp.ok){var err=await resp.json();throw new Error((err.error&&err.error.message)||resp.status);}
     toast('✅ გაყიდვა შენახულია!','ok');
-    ['sv','sp','sc'].forEach(id=>document.getElementById(id).value='');
+    ['sv','sp','sc'].forEach(function(id){document.getElementById(id).value='';});
     await loadAll();
-  }catch(e){toast('შეცდომა: '+e.message,'err');}
+  } catch(e){toast('შეცდომა: '+e.message,'err');}
   finally{btn.disabled=false;btn.innerHTML='<span>✓</span> შენახვა';}
 }
 
 function goPage(n,el){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.ni').forEach(i=>i.classList.remove('on'));
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.ni').forEach(function(i){i.classList.remove('on');});
   document.getElementById('pg-'+n).classList.add('on');
   el.classList.add('on');
   document.querySelector('.scroll').scrollTop=0;
 }
+
 async function doRefresh(){
-  const b=document.getElementById('rbtn');
-  b.classList.add('sp');await loadAll();b.classList.remove('sp');
+  var b=document.getElementById('rbtn');
+  b.classList.add('sp');
+  await loadAll();
+  b.classList.remove('sp');
 }
-function toast(msg,type=''){
-  document.querySelector('.toast')?.remove();
-  const t=document.createElement('div');
-  t.className='toast '+type;t.textContent=msg;
-  document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
+
+function toast(msg,type){
+  var old=document.querySelector('.toast');
+  if(old) old.remove();
+  var t=document.createElement('div');
+  t.className='toast '+(type||'');
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(function(){t.remove();},3000);
 }
+
 function fn(n){return Number(n||0).toLocaleString('ka-GE',{maximumFractionDigits:1});}
 
 function init(){
-  loadAll().then(()=>setTimeout(()=>document.getElementById('splash').classList.add('off'),1800));
+  loadAll().then(function(){
+    setTimeout(function(){document.getElementById('splash').classList.add('off');},1800);
+  });
 }
 
-window.addEventListener('load',()=>{
+window.addEventListener('load',function(){
   if(!TK||!BI){
     document.getElementById('splash').style.display='none';
     document.getElementById('setup').classList.add('on');
-  }else{init();}
+  } else {
+    init();
+  }
 });
 </script>
 </body>
 </html>
-
