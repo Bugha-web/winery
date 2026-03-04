@@ -12,43 +12,39 @@
 <style>
 :root{--bg:#0d0503;--s1:#1e0f08;--s2:#2a1510;--s3:#321a13;--wine:#8b1a2b;--wine2:#a82035;--gold:#c9953a;--gold2:#e8b85a;--cream:#f5e6c8;--tx:#f0dfc0;--tx2:#b89870;--tx3:#7a6045;--g1:#2d6a3f;--g2:#3d8f55;--b1:rgba(201,149,58,.15);--b2:rgba(201,149,58,.08);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;overflow:hidden;}
-body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(--tx);}
+body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(--tx);height:100dvh;overflow:hidden;}
 
-/* ── SETUP ── */
+/* ── SETUP — simple top scroll, no centering ── */
 #setup{
   position:fixed;inset:0;z-index:3000;background:var(--bg);
-  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  overflow-y:scroll;-webkit-overflow-scrolling:touch;
   display:none;
 }
 #setup.on{display:block;}
-.setup-inner{
-  min-height:100%;
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;
-  padding:50px 20px 50px;
-}
-.s-card{
-  width:100%;max-width:360px;
-  background:var(--s1);border:1px solid var(--b2);border-radius:16px;
-  padding:22px;display:flex;flex-direction:column;gap:16px;
-}
-.s-lbl{font-size:.68em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;}
-.s-inp{
+.s-wrap{padding:48px 20px 60px;display:flex;flex-direction:column;align-items:center;}
+.s-logo{font-size:2.8em;margin-bottom:10px;text-align:center;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:1.85em;font-weight:700;color:var(--gold2);margin-bottom:3px;text-align:center;}
+.s-sub{font-size:.74em;color:var(--tx3);margin-bottom:28px;text-align:center;}
+.s-card{width:100%;max-width:400px;background:var(--s1);border:1px solid var(--b2);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:18px;}
+.s-field label{font-size:.68em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;}
+.s-field input{
   width:100%;background:var(--s2);border:1px solid var(--b1);
-  border-radius:10px;padding:13px 12px;color:var(--tx);
-  font-size:.84em;outline:none;font-family:monospace;
+  border-radius:10px;padding:14px 13px;color:var(--tx);
+  font-size:.9em;outline:none;font-family:monospace;
   -webkit-appearance:none;appearance:none;
+  /* prevent zoom on focus in iOS */
+  font-size:16px;
 }
-.s-inp:focus{border-color:var(--gold);}
-.s-hint{font-size:.65em;color:var(--tx3);margin-top:5px;line-height:1.4;}
+.s-field input:focus{border-color:var(--gold);}
+.s-hint{font-size:.65em;color:var(--tx3);margin-top:6px;line-height:1.5;}
 .s-btn{
   width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));
-  border:none;border-radius:11px;padding:15px;
-  color:var(--cream);font-size:.93em;font-weight:600;
+  border:none;border-radius:12px;padding:16px;
+  color:var(--cream);font-size:1em;font-weight:600;
   font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;
 }
 .s-btn:active{opacity:.85;}
+.s-note{font-size:.67em;color:var(--tx3);margin-top:16px;text-align:center;}
 
 /* ── SPLASH ── */
 #splash{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .7s;}
@@ -60,8 +56,8 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sp-f{height:100%;background:linear-gradient(90deg,var(--wine),var(--gold));animation:ld 2s forwards;}
 @keyframes ld{from{width:0}to{width:100%}}
 
-/* ── APP LAYOUT ── */
-#app{display:flex;flex-direction:column;height:100%;height:-webkit-fill-available;}
+/* ── APP ── */
+#app{display:flex;flex-direction:column;height:100dvh;}
 .hdr{flex-shrink:0;background:rgba(13,5,3,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:13px 16px 11px;display:flex;align-items:center;justify-content:space-between;}
 .hdr-l{font-family:'Cormorant Garamond',serif;font-size:1.3em;font-weight:700;color:var(--gold2);}
 .hdr-s{font-size:.62em;color:var(--tx3);margin-top:1px;}
@@ -98,7 +94,7 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sc-u{font-size:.61em;color:var(--tx3);margin-top:2px;}
 .sc-i{position:absolute;right:11px;top:11px;font-size:1.2em;opacity:.2;}
 
-/* ── WINE CARDS ── */
+/* ── WINE ── */
 .wc{background:var(--s1);border:1px solid var(--b2);border-radius:13px;padding:13px;margin-bottom:9px;}
 .wc-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .wc-n{font-family:'Cormorant Garamond',serif;font-size:1.1em;font-weight:600;color:var(--cream);}
@@ -132,7 +128,7 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .ti-v{font-size:.69em;color:var(--tx3);margin-top:1px;}
 .td{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 
-/* ── SALE FORM ── */
+/* ── FORM ── */
 .chs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
 .ct{background:var(--s2);border:1px solid var(--b2);border-radius:10px;padding:10px 5px;text-align:center;cursor:pointer;transition:all .2s;}
 .ct.on{background:var(--wine);border-color:var(--wine2);}
@@ -142,7 +138,7 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 .sf{background:var(--s1);border:1px solid var(--b2);border-radius:15px;padding:16px;}
 .fg{margin-bottom:12px;}
 .fl{font-size:.69em;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;display:block;}
-.fs,.fi{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:11px 12px;color:var(--tx);font-size:.87em;font-family:'Noto Sans Georgian',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.fs,.fi{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:12px;color:var(--tx);font-size:16px;font-family:'Noto Sans Georgian',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .fs:focus,.fi:focus{border-color:var(--gold);}
 .fs option{background:var(--s2);}
 .sub{width:100%;background:linear-gradient(135deg,var(--wine),var(--wine2));border:none;border-radius:11px;padding:14px;color:var(--cream);font-size:.91em;font-weight:600;font-family:'Noto Sans Georgian',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;}
@@ -165,24 +161,24 @@ body{font-family:'Noto Sans Georgian',sans-serif;background:var(--bg);color:var(
 
 <!-- ══ SETUP ══ -->
 <div id="setup">
-  <div class="setup-inner">
-    <div style="font-size:3em;margin-bottom:12px">🍷</div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1.9em;font-weight:700;color:var(--gold2);margin-bottom:4px">მეღვინეობა</div>
-    <div style="font-size:.75em;color:var(--tx3);margin-bottom:24px;text-align:center">პირველი გაშვება — Airtable კავშირი</div>
+  <div class="s-wrap">
+    <div class="s-logo">🍷</div>
+    <div class="s-title">მეღვინეობა</div>
+    <div class="s-sub">Airtable კავშირი — ერთხელ შეავსე</div>
     <div class="s-card">
-      <div>
-        <label class="s-lbl">Airtable API Token</label>
-        <input id="cfg-tk" type="text" class="s-inp" placeholder="patXXXXXXXX.xxxxxxxxxxxxxxxx...">
-        <div class="s-hint">Airtable.com → Developer Hub → Personal access tokens → შენი token</div>
+      <div class="s-field">
+        <label>Airtable API Token</label>
+        <input id="cfg-tk" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="patXXXXXXXX.xxxxxxxxxxxxxxxx...">
+        <div class="s-hint">Airtable.com → Developer Hub → Personal access tokens → შენი token-ი</div>
       </div>
-      <div>
-        <label class="s-lbl">Base ID</label>
-        <input id="cfg-bi" type="text" class="s-inp" placeholder="appXXXXXXXXXXXXXX">
-        <div class="s-hint">Airtable-ის URL-ში: airtable.com/<span style="color:var(--tx2);font-weight:700">appXXX...</span>/tbl...</div>
+      <div class="s-field">
+        <label>Base ID</label>
+        <input id="cfg-bi" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="appXXXXXXXXXXXXXX">
+        <div class="s-hint">Airtable-ის URL: airtable.com/<b style="color:var(--tx2)">appXXX...</b>/tbl...</div>
       </div>
       <button class="s-btn" onclick="doSetup()">✓ შენახვა და გაშვება</button>
     </div>
-    <div style="font-size:.67em;color:var(--tx3);margin-top:14px;text-align:center">🔒 მხოლოდ შენს ტელეფონზე ინახება</div>
+    <div class="s-note">🔒 მხოლოდ შენს ტელეფონზე ინახება · სხვა ვერ ნახავს</div>
   </div>
 </div>
 
@@ -476,3 +472,4 @@ window.addEventListener('load',()=>{
 </script>
 </body>
 </html>
+
